@@ -1,0 +1,18 @@
+a)
+
+S  -> E $                      ; S.val <- E.val
+E  -> if E0 then E1 else E2    ; E.val <- if E0.val ≠ 0 then E1.val else E2.val
+    | if E0 then E1            ; E.val <- if E0.val ≠ 0 then E1.val else 0
+    | E0 + E1                  ; E.val <- E0.val + E1.val
+    | n                        ; E.val <- n.val
+
+b)
+
+S → E $                ; S.val ← E.val
+E  → T E'              ; E.val ← E'.syn
+E' → + T E'            ; E'.syn ← E'.in + T.val
+    | E                ; E'.syn ← E'.in
+T → if C then T else T ; T.val ← if C.val ≠ 0 then T1.val else T2.val
+  | if C then T        ; T.val ← if C.val ≠ 0 then T1.val else 0
+  | n                  ; T.val ← n.val
+C → T                  ; C.val ← T.val
